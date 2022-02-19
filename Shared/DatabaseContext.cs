@@ -5,14 +5,14 @@ namespace Shared;
 
 public abstract class DatabaseContext : DbContext
 {
-    public DbSet<User> Users { get; set; }
+    public DbSet<User>? Users { get; set; }
     
-    public DbSet<Role> Roles { get; set; }
+    public DbSet<Role>? Roles { get; set; }
 
     public async Task<int> SaveAsync(
         IEnumerable<User> users)
     {
-        await Users.AddRangeAsync(users);
+        await Users!.AddRangeAsync(users);
         return await SaveChangesAsync();
     }
 

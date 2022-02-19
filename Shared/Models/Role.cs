@@ -14,7 +14,7 @@ public class Role
     
     public Guid Id { get; protected set; }
 
-    public string Name { get; protected set; }
+    public string? Name { get; protected set; }
 
     public virtual ICollection<User> Users { get; protected set; } = new List<User>();
 }

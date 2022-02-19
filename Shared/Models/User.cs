@@ -22,9 +22,9 @@ public class User
     public Guid Id { get; protected set; }
 
     [Required]
-    public string Email { get; protected set; }
+    public string? Email { get; protected set; }
 
     public DateTimeOffset CreatedAt { get; protected set; }
 
-    public virtual ICollection<Role> Roles { get; protected set; }
+    public virtual ICollection<Role> Roles { get; protected set; } = new List<Role>();
 }
