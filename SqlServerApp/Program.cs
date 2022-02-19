@@ -13,10 +13,11 @@ public class Program
 
     private static async Task DebugAsync()
     {
-        await using var benchmarker = new Benchmarker<AzureSqlServerDockerContainer>();
+        var benchmarker = new Benchmarker<AzureSqlServerDockerContainer>();
         await benchmarker.Setup();
         Console.WriteLine(await benchmarker.RunWithoutOrderingAsync());
         Console.WriteLine(await benchmarker.RunDefaultAsync());
         Console.WriteLine(await benchmarker.RunAsSplitAsync());
+        await benchmarker.CleanUp();
     }
 }

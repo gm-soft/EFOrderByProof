@@ -3,20 +3,24 @@ using Shared;
 
 namespace PostgreApp;
 
+public class PostgreBenchmark : Benchmarker<PostgreDatabaseDockerContainer>
+{
+}
+
 public class Program
 {
-    public static Task Main()
+    public static void Main()
     {
-        // BenchmarkRunner.Run<Benchmarker<PostgreDatabaseDockerContainer>>();
-        return DebugAsync();
+        BenchmarkRunner.Run<PostgreBenchmark>();
     }
 
     private static async Task DebugAsync()
     {
-        await using var benchmarker = new Benchmarker<PostgreDatabaseDockerContainer>();
+        var benchmarker = new PostgreBenchmark();
         await benchmarker.Setup();
         Console.WriteLine(await benchmarker.RunWithoutOrderingAsync());
         Console.WriteLine(await benchmarker.RunDefaultAsync());
         Console.WriteLine(await benchmarker.RunAsSplitAsync());
+        await benchmarker.CleanUp();
     }
 }

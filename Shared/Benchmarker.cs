@@ -6,17 +6,16 @@ using Shared.OrderingHack;
 
 namespace Shared;
 
-public class Benchmarker<TContainer> : IAsyncDisposable
+public class Benchmarker<TContainer>
 where TContainer: IDatabaseContainer, new()
 {
     public const int Iterations = 1_000;
 
-    private bool _disposed;
     private IDatabaseContainer? _databaseContainer;
     private DatabaseContext? _context;
     
     [GlobalSetup]
-    public async Task<int> Setup()
+    public async Task Setup()
     {
         _databaseContainer = new TContainer();
         await _databaseContainer.StartAsync();
@@ -24,11 +23,11 @@ where TContainer: IDatabaseContainer, new()
 
         if (await _context.Users!.AnyAsync())
         {
-            return default;
+            return;
         }
 
         var roles = await _context.Roles!.ToListAsync();
-        return await _context.SaveAsync(new UserCollection(Iterations, roles));
+        await _context.SaveAsync(new UserCollection(Iterations, roles));
     }
 
     [Benchmark]
@@ -52,18 +51,12 @@ where TContainer: IDatabaseContainer, new()
         return users.Count;
     }
 
-    public async ValueTask DisposeAsync()
+    [GlobalCleanup]
+    public async Task CleanUp()
     {
-        if (_disposed)
-        {
-            return;
-        }
-
         if (_databaseContainer is not null)
         {
             await _databaseContainer.DisposeAsync();
         }
-
-        _disposed = true;
     }
 }
