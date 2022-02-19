@@ -37,6 +37,14 @@ public abstract class BenchmarkRunnerBase
         var users = await context.Users.RemoveOrdering().ToListAsync();
         return users.Count;
     }
+    
+    [Benchmark]
+    public async Task<int> RunAsSplitAsync()
+    {
+        await using var context = CreateContext();
+        var users = await context.Users.AsSplitQuery().ToListAsync();
+        return users.Count;
+    }
 
     protected abstract DatabaseContext CreateContext();
 }

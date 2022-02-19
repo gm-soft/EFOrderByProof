@@ -4,12 +4,17 @@ namespace PostgreApp;
 
 public class Program
 {
-    public static void Main()
+    public static async Task Main()
     {
         // BenchmarkRunner.Run<PostgreBenchmark>();
+        await DebugAsync();
+    }
+
+    private static async Task DebugAsync()
+    {
         var benchmarker = new PostgreBenchmark();
-        benchmarker.Setup().Wait();
-        var ordering = benchmarker.RunWithoutOrderingAsync().GetAwaiter().GetResult();
-        Console.WriteLine(ordering);
+        await benchmarker.Setup();
+        Console.WriteLine(await benchmarker.RunDefaultAsync());
+        Console.WriteLine(await benchmarker.RunAsSplitAsync());
     }
 }

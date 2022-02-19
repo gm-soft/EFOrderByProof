@@ -15,4 +15,9 @@ public abstract class DatabaseContext : DbContext
     }
 
     public abstract Task MigrateIfNecessaryAsync();
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.LogTo(Console.WriteLine, new[] { DbLoggerCategory.Query.Name });
+    }
 }

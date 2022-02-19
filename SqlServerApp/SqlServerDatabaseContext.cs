@@ -7,8 +7,8 @@ public class SqlServerDatabaseContext : DatabaseContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.LogTo(Console.WriteLine);
         optionsBuilder.UseSqlServer("Server=localhost; Database=eopa; User Id=sa; Password=Str0ngPass!;");
+        base.OnConfiguring(optionsBuilder);
     }
     
     public override async Task MigrateIfNecessaryAsync()
