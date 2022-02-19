@@ -1,5 +1,9 @@
 using DotNet.Testcontainers.Containers.Builders;
+using DotNet.Testcontainers.Containers.Configurations.Databases;
+using DotNet.Testcontainers.Containers.Modules;
 using DotNet.Testcontainers.Containers.Modules.Abstractions;
+using DotNet.Testcontainers.Containers.Modules.Databases;
+using DotNet.Testcontainers.Containers.WaitStrategies;
 using Shared;
 using Shared.Docker;
 
@@ -7,18 +11,17 @@ namespace SqlServerApp;
 
 public class AzureSqlServerDockerContainer : IDatabaseContainer
 {
-    private readonly TestcontainerDatabase _dbContainer;
+    private readonly MsSqlTestcontainer _dbContainer;
     private bool _disposed;
     private SqlServerDatabaseContext? _context;
 
     public AzureSqlServerDockerContainer()
     {
-        _dbContainer = new TestcontainersBuilder<TestcontainerDatabase>()
-            .WithName("azure-sql-database")
-            .WithImage("mcr.microsoft.com/azure-sql-edge")
-            .WithPortBinding(1433, 1433)
-            .WithEnvironment("SA_PASSWORD", "Str0ngPass!")
-            .WithEnvironment("ACCEPT_EULA", "Y")
+        _dbContainer = new TestcontainersBuilder<MsSqlTestcontainer>()
+            .WithDatabase(new MsSqlTestcontainerConfiguration("mcr.microsoft.com/azure-sql-edge")
+            {
+                Password = "Str0ngPass!"
+            })
             .Build();
     }
 
