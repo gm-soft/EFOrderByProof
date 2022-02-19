@@ -4,12 +4,18 @@ namespace SqlServerApp;
 
 public class Program
 {
-    public static void Main()
+    public static Task Main()
     {
-        // BenchmarkRunner.Run<SqlServerBenchmark>();
+        BenchmarkRunner.Run<SqlServerBenchmark>();
+        return Task.CompletedTask;
+    }
+
+    private static async Task DebugAsync()
+    {
         var benchmarker = new SqlServerBenchmark();
-        benchmarker.Setup().Wait();
-        var ordering = benchmarker.RunDefaultAsync().GetAwaiter().GetResult();
-        Console.WriteLine(ordering);
+        await benchmarker.Setup();
+        Console.WriteLine(await benchmarker.RunWithoutOrderingAsync());
+        Console.WriteLine(await benchmarker.RunDefaultAsync());
+        Console.WriteLine(await benchmarker.RunAsSplitAsync());
     }
 }

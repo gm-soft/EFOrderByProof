@@ -7,7 +7,7 @@ namespace Shared;
 
 public abstract class BenchmarkRunnerBase
 {
-    public const int Iterations = 100_000;
+    public const int Iterations = 10_000;
     
     [GlobalSetup]
     public async Task<int> Setup()
@@ -27,7 +27,7 @@ public abstract class BenchmarkRunnerBase
     public async Task<int> RunDefaultAsync()
     {
         await using var context = CreateContext();
-        var users = await context.Users.ToListAsync();
+        var users = await context.Users.Include(x => x.Roles).ToListAsync();
         return users.Count;
     }
 
@@ -35,7 +35,7 @@ public abstract class BenchmarkRunnerBase
     public async Task<int> RunWithoutOrderingAsync()
     {
         await using var context = CreateContext();
-        var users = await context.Users.RemoveOrdering().ToListAsync();
+        var users = await context.Users.Include(x => x.Roles).RemoveOrdering().ToListAsync();
         return users.Count;
     }
     
@@ -43,7 +43,7 @@ public abstract class BenchmarkRunnerBase
     public async Task<int> RunAsSplitAsync()
     {
         await using var context = CreateContext();
-        var users = await context.Users.AsSplitQuery().ToListAsync();
+        var users = await context.Users.Include(x => x.Roles).AsSplitQuery().ToListAsync();
         return users.Count;
     }
 
