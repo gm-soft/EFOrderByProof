@@ -14,9 +14,9 @@ Apple M1 2.40GHz, 1 CPU, 8 logical and 8 physical cores
 
 |                  Method |      Mean |     Error |    StdDev |
 |------------------------ |----------:|----------:|----------:|
-|         RunDefaultAsync |  6.304 ms | 0.1257 ms | 0.1345 ms |
-| RunWithoutOrderingAsync | 14.967 ms | 0.2877 ms | 0.5877 ms |
-|         RunAsSplitAsync |  9.448 ms | 0.0882 ms | 0.0825 ms |
+|         RunDefaultAsync |  6.305 ms | 0.1225 ms | 0.1023 ms |
+| RunWithoutOrderingAsync | 14.236 ms | 0.0771 ms | 0.0602 ms |
+|         RunAsSplitAsync |  9.588 ms | 0.1648 ms | 0.1541 ms |
 ```
 
 ### Azure SQL Server
