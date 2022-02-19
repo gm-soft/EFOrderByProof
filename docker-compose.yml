@@ -1,0 +1,32 @@
+version: "3.4"
+
+networks:
+  eopa-network:
+    driver: bridge
+
+services:
+  database.postgre:
+    container_name: postgre-database
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: pi
+      POSTGRES_PASSWORD: Str0ngPass!
+      POSTGRES_DB: petrelcore
+      POSTGRES_ADMIN_PASSWORD: Str0ngPass!
+    ports:
+      - 5432:5432
+    networks:
+      - eopa-network
+
+  database.azure:
+    container_name: azure-sql-database
+    restart: always
+    image: mcr.microsoft.com/azure-sql-edge
+    ports:
+      - 1433:1433
+    environment:
+      SA_PASSWORD: "Str0ngPass!"
+      ACCEPT_EULA: "Y"
+    networks:
+      - eopa-network
