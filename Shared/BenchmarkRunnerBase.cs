@@ -10,16 +10,17 @@ public abstract class BenchmarkRunnerBase
     public const int Iterations = 100_000;
     
     [GlobalSetup]
-    public async Task Setup()
+    public async Task<int> Setup()
     {
         await using var context = CreateContext();
         await context.MigrateIfNecessaryAsync();
         if (await context.Users.AnyAsync())
         {
-            return;
+            return default;
         }
 
-        var rowsAffected = await context.SaveAsync(new UserCollection(Iterations));
+        var roles = await context.Roles.ToListAsync();
+        return await context.SaveAsync(new UserCollection(Iterations, roles));
     }
 
     [Benchmark]

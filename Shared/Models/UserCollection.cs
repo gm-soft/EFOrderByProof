@@ -6,10 +6,12 @@ namespace Shared.Models;
 public class UserCollection : IEnumerable<User>
 {
     private readonly int _count;
+    private readonly IList<Role> _roles;
 
-    public UserCollection(int count)
+    public UserCollection(int count, IList<Role> roles)
     {
         _count = count;
+        _roles = roles;
     }
 
     public IEnumerator<User> GetEnumerator()
@@ -21,7 +23,9 @@ public class UserCollection : IEnumerable<User>
             builder.Append(".");
             builder.Append(Faker.Name.Last());
             builder.Append("@example.com");
-            yield return new User(builder.ToString());
+
+            var role = _roles[i % 2];
+            yield return new User(builder.ToString(), role);
         }
     }
 
