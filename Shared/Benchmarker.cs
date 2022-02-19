@@ -6,6 +6,7 @@ using Shared.OrderingHack;
 
 namespace Shared;
 
+[MemoryDiagnoser]
 public class Benchmarker<TContainer>
 where TContainer: IDatabaseContainer, new()
 {
