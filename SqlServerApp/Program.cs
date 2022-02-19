@@ -1,3 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿namespace SqlServerApp;
 
-Console.WriteLine("Hello, World!");
+public class Program
+{
+    public static async Task Main()
+    {
+        
+    }
+}

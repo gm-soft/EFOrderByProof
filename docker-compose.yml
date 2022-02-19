@@ -12,7 +12,7 @@ services:
     environment:
       POSTGRES_USER: pi
       POSTGRES_PASSWORD: Str0ngPass!
-      POSTGRES_DB: petrelcore
+      POSTGRES_DB: eopa
       POSTGRES_ADMIN_PASSWORD: Str0ngPass!
     ports:
       - 5432:5432

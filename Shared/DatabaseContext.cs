@@ -1,6 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Shared.Models;
+
 namespace Shared;
 
-public class DatabaseContext
+public abstract class DatabaseContext : DbContext
 {
-    
+    public DbSet<User> Users { get; set; }
 }
