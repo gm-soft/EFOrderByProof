@@ -3,17 +3,20 @@ using Shared;
 
 namespace SqlServerApp;
 
+public class AzureBench : Benchmarker<AzureSqlServerDockerContainer>
+{
+}
+
 public class Program
 {
-    public static Task Main()
+    public static void Main()
     {
-        BenchmarkRunner.Run<Benchmarker<AzureSqlServerDockerContainer>>();
-        return Task.CompletedTask;
+        BenchmarkRunner.Run<AzureBench>();
     }
-
+    
     private static async Task DebugAsync()
     {
-        var benchmarker = new Benchmarker<AzureSqlServerDockerContainer>();
+        var benchmarker = new AzureBench();
         await benchmarker.Setup();
         Console.WriteLine(await benchmarker.RunWithoutOrderingAsync());
         Console.WriteLine(await benchmarker.RunDefaultAsync());
