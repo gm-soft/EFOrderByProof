@@ -1,12 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfOrderingProofApp", "EfOrderingProofApp\EfOrderingProofApp.csproj", "{47FCC565-996C-4AFD-87C7-B804127F6D57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServerApp", "SqlServerApp\SqlServerApp.csproj", "{47FCC565-996C-4AFD-87C7-B804127F6D57}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3DF25F49-74FF-4440-8434-2E0E7F168E8E}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 		infrastructure.ps1 = infrastructure.ps1
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostgreApp", "PostgreApp\PostgreApp.csproj", "{B3F8D3C3-5F1B-4791-91BC-F18021E51BCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{67254AC9-BA2B-445C-BD42-F681624D74AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +22,13 @@ Global
 		{47FCC565-996C-4AFD-87C7-B804127F6D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47FCC565-996C-4AFD-87C7-B804127F6D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47FCC565-996C-4AFD-87C7-B804127F6D57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F8D3C3-5F1B-4791-91BC-F18021E51BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F8D3C3-5F1B-4791-91BC-F18021E51BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F8D3C3-5F1B-4791-91BC-F18021E51BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F8D3C3-5F1B-4791-91BC-F18021E51BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67254AC9-BA2B-445C-BD42-F681624D74AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67254AC9-BA2B-445C-BD42-F681624D74AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67254AC9-BA2B-445C-BD42-F681624D74AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67254AC9-BA2B-445C-BD42-F681624D74AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
